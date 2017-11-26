@@ -15,8 +15,8 @@ int  dicsize = 0;
 
 
 FILE *fopen_read(char *filename){
-    FILE *istream = fopen(filename, "r");
-    if(istream == NULL){
+    FILE *fp = fopen(filename, "r");
+    if(fp == NULL){
         fprintf(stderr, "can't open the file: %s\n", filename);
         exit(2);
     }
@@ -115,6 +115,7 @@ nt]);
     }
 }
 
+/*最長一致法*/
 void longest_match(char *get){
     char *p;
     char *w;
@@ -123,7 +124,7 @@ void longest_match(char *get){
     p = get;
 
     while(p != NULL){
-        for (i=l;p >=i;i--){
+        for (i=l;p>=i;i--){
             /*最長の単語を見つける、先頭位置Pからiまでの単語が辞書に存在するか調べる*/
             result = lookup(w);
             if(result != 1) break;
@@ -132,6 +133,7 @@ void longest_match(char *get){
         print_word(result);
 
         if(result != 1){
+            //単語があったら
             p = get + (i + 1);
         }
         else{
@@ -140,14 +142,38 @@ void longest_match(char *get){
 
     }    
 }
+/*コスト最小法*/
+void cost_min(int len){
+    
+    int i,j;
+    char p[len];
+    int n[len],w[len];
 
- main(int argc, char **argv){
+    char *s[len][MAX];
+    /*位置iで終わる単語を記録する*/
+    for(i=0;i<len;i++){
+        for(j=i,j<0;j--){
+            p[j] = buf
+             //読み取った文字をpにいれる  
+        }
+    }
+
+}
+
+int main(int argc, char **argv){
     char buf[100000];
+    /*バッファには何が入る？？*/
     int i;
     int ent;
     if(argc != 2) error_message();
     read_dic(argv[1]);
+    /*辞書の読み出し
+    辞書のファイルを読み込む→辞書のサイズを更新→辞書に単語を登録
+    */
     while(fgetline(buf, sizeof(buf), stdin) != -1){
+        /*バッファに入っている文字列を読み出し、辞書にその単語があれば表示する*/
         print_word(lookup(buf));
+        /**/
     }
+    return 0;
 }
