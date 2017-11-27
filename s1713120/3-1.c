@@ -27,8 +27,11 @@ FILE *fopen_read(char *filename){
 int fgetline(char *buf, size_t size, FILE *stream){
     int len;
     if(fgets(buf, size, stream) == NULL) return -1;
+    /*ファイルに文字がなければエラーステータスとしてー１を返す*/
     len = strlen(buf);
-    if(len == 0) return len;
+    /*あいうえお\nほげほげ\n\0ならこの関数の返り値は？*/
+    /*バッファに入っている文字数を記録*/
+    if(len == 0) return len;/*0もじならそのまま*/
     if(buf[len-1] == '\n'){
         buf[len-1] = '\0';
          return len-1;
@@ -81,7 +84,7 @@ int lookup(char *word){
     return -1;
 }
 
-void print_word(int ent){
+void print_word(int ent){//エントリーにある文字は表示、ない文字はエラーを返す
     char unkword[10];
     if(ent == -1){
       printf("Unknown word!!\n");
@@ -91,13 +94,15 @@ nt]);
     }
 }
 
- main(int ac, char **av){
+int main(int ac, char **av){
     char buf[100000];
     int i;
     int ent;
     if(ac != 2) print_usage();
     read_dic(av[1]);
     while(fgetline(buf, sizeof(buf), stdin) != -1){
+        /*バッファの文字を読み込み*/
         print_word(lookup(buf));
     }
+    return 0;
 }
