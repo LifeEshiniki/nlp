@@ -26,6 +26,7 @@ FILE *fopen_read(char *filename){
 int fgetline(char *buf, size_t size, FILE *stream){
     int len;
     if(fgets(buf, size, stream) == NULL) return -1;   /*読み込む文字がないなら終了*/
+    // fgetsの
     len = strlen(buf); 
     if(len == 0) return len;
     if(buf[len-1] == '\n'){
@@ -116,24 +117,26 @@ nt]);
 }
 
 /*最長一致法*/
-void longest_match(char *get){
+int longest_match(char *get){
     char *p;
     char *w;
-    int i,result;
+    int i,j,result;
     int l = strlen(get);
     p = get;
 
     while(p != NULL){
         for (i=l;p>=i;i--){
-            /*最長の単語を見つける、先頭位置Pからiまでの単語が辞書に存在するか調べる*/
-            result = lookup(w);
-            if(result != 1) break;
+            /*最長の単語を見つける、先頭位置Pからiまでの単語が辞書に存在するか調べる*/ 
+            //ｗに先頭位置ｐから現在の位置iまでの単語を代入する
+            // 最長の単語が見つかったらループを抜ける
+        if(lookup(w) != -1) 
+        print_word(result);
+        return i;
         } 
 
-        print_word(result);
+    
 
         if(result != 1){
-            //単語があったら
             p = get + (i + 1);
         }
         else{
@@ -174,6 +177,24 @@ int main(int argc, char **argv){
         /*バッファに入っている文字列を読み出し、辞書にその単語があれば表示する*/
         print_word(lookup(buf));
         /**/
+    }
+    while(argv != NULL){//文末まで最長一致法による形態素解析
+        ent = 0;
+        ent = longest_match(*argv);
+        
+
+    }
+    return 0;
+}
+
+int main (void){
+    int c;
+    char buf[10000000];
+    size_t size;
+    size = sizeof(buf);
+
+    while((fgets(buf,size,stdin != NULL)){
+
     }
     return 0;
 }

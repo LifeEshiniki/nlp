@@ -141,13 +141,15 @@ void longest_match(char *get){
     }    
 }
 
- main(int argc, char **argv){
+int main(int argc, char **argv){
     char buf[100000];
+    char buf2[1000000];
     int i;
     int ent;
-    if(argc != 2) error_message();
+    if(argc != 3) error_message();
     read_dic(argv[1]);
-    while(fgetline(buf, sizeof(buf), stdin) != -1){
-        print_word(lookup(buf));
+    while(fgetline(buf2, sizeof(buf2), argv[2]) != -1){
+
     }
-}
+    return 0;
+ }
