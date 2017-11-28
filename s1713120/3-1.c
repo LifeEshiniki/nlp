@@ -26,6 +26,7 @@ FILE *fopen_read(char *filename){
 
 int fgetline(char *buf, size_t size, FILE *stream){
     int len;
+    /*fgets→ファイル中の文字を一行ずつ読み込む*/
     if(fgets(buf, size, stream) == NULL) return -1;
     /*ファイルに文字がなければエラーステータスとしてー１を返す*/
     len = strlen(buf);
@@ -94,7 +95,7 @@ nt]);
     }
 }
 
-int main(int ac, char **av){
+int main(int argc, char **argv){
     char buf[100000];
     int i;
     int ent;
