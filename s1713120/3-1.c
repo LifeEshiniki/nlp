@@ -118,9 +118,9 @@ int main(int argc, char **argv){
     if(argc != 2) print_usage();
     read_dic(argv[1]);
     while(fgetline(buf, sizeof(buf), stdin) != -1){
-        /*標準入力からバッファに文字を１行ずつ読み込み*/
+        /*キーボード入力からバッファに文字を１行ずつ読み込み*/
         print_word(lookup(buf));
-        // 検索結果の表示
+        // キーボードに入力された単語の検索結果の表示
     }
   
     return 0;

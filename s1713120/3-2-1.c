@@ -80,6 +80,16 @@ int read_dic(char *filename){
     return num;
 }
 
+int li_lookup(char *word){
+    int i;
+
+/*  線形探索 */
+    for(i = 0; i < Tnum; i++){
+        if(!strcmp(word, Tmidasi[i])) return i;
+    }
+
+    return -1;
+}
 
 int lookup(char *word){
     
@@ -116,40 +126,42 @@ nt]);
 }
 
 void longest_match(char *get){
-    char *p;
     char *w;
     int i,result;
     int l = strlen(get);
-    p = get;
+    int p=0;
 
-    while(p != NULL){
-        for (i=l;p >=i;i--){
+    while(p <= l){
+        for (i=l;p>=i;i--){
             /*最長の単語を見つける、先頭位置Pからiまでの単語が辞書に存在するか調べる*/
+            strncpy(w,get+p,l);
+            //wにpからiまでの部分文字列を代入
             result = lookup(w);
-            if(result != 1) break;
+            if(result != -1) break;
         } 
 
         print_word(result);
 
         if(result != 1){
-            p = get + (i + 1);
+            p = i+1;
         }
         else{
-            p = p + 1;
+            p = p+1;
         }
 
     }    
 }
 
 int main(int argc, char **argv){
-    char buf[100000];
-    char buf2[1000000];
+    // 入力形式はプログラム、辞書ファイル、テキストファイル
+    char buf[1000000];
     int i;
     int ent;
     if(argc != 3) error_message();
     read_dic(argv[1]);
-    while(fgetline(buf2, sizeof(buf2), argv[2]) != -1){
-
+    while(fgetline(buf, sizeof(buf), argv[2]) != -1){
+        // テキストから一行ずつ読み取る
+        longest_match(buf);
     }
     return 0;
  }

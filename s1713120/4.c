@@ -116,35 +116,7 @@ nt]);
     }
 }
 
-/*最長一致法*/
-int longest_match(char *get){
-    char *p;
-    char *w;
-    int i,j,result;
-    int l = strlen(get);
-    p = get;
 
-    while(p != NULL){
-        for (i=l;p>=i;i--){
-            /*最長の単語を見つける、先頭位置Pからiまでの単語が辞書に存在するか調べる*/ 
-            //ｗに先頭位置ｐから現在の位置iまでの単語を代入する
-            // 最長の単語が見つかったらループを抜ける
-        if(lookup(w) != -1) 
-        print_word(result);
-        return i;
-        } 
-
-    
-
-        if(result != 1){
-            p = get + (i + 1);
-        }
-        else{
-            p = p + 1;
-        }
-
-    }    
-}
 /*コスト最小法*/
 void cost_min(int len){
     
