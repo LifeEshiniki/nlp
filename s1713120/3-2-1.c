@@ -131,10 +131,10 @@ void longest_match(char *get){
     int l = strlen(get);
     int p=0;
 
-    while(p <= l){
-        for (i=l;p>=i;i--){
+    while(p <= l-1){
+        for (i=l-1;p<=i;i--){
             /*最長の単語を見つける、先頭位置Pからiまでの単語が辞書に存在するか調べる*/
-            strncpy(w,get+p,l);
+            strncpy(w,get+p,i);
             //wにpからiまでの部分文字列を代入
             result = lookup(w);
             if(result != -1) break;
