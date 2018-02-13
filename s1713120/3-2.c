@@ -1,13 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 #include <string.h>
 
 #define MAX_ENTRY_SIZE 150000
 
-char *Tmidasi[MAX_ENTRY_SIZE];
-char *Tyomi[MAX_ENTRY_SIZE];
+char *midashi[MAX_ENTRY_SIZE];
+char *[MAX_ENTRY_SIZE];
 char *Tkihon[MAX_ENTRY_SIZE];
 char *Tpos[MAX_ENTRY_SIZE];
 float Tuni[MAX_ENTRY_SIZE];
